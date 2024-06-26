@@ -11,3 +11,7 @@ export const checkProductExists = async (itemId: number): Promise<boolean> => {
 export const getProductsService = async (): Promise<Product[]> => {
   return await ProductRepository.find();
 };
+
+export const getProductByIdService = async (itemId: number): Promise<Product> =>{
+  return (await ProductRepository.findOneBy({id: itemId})) as Product;
+};

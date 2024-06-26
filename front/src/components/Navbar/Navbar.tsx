@@ -15,18 +15,13 @@ const MyNavbar = () => {
                 priority={true}   
             />
         </div>
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-black">My Store</span>
+        <span className="self-center whitespace-nowrap text-xl font-semibold text-black">My Store</span>
       </NavbarBrand>
-      <div className="flex md:order-2 space-x-4">
-        <Button as={Link} href="/login">Login</Button>
-        <Button as={Link} href="/register">Register</Button> 
-      </div>
-      <NavbarCollapse>
-        <NavbarLink as={Link} href="/shop" >
-          Home
-        </NavbarLink>
-        <NavbarLink as={Link} href="/user-dashboard">My Profile</NavbarLink>
-        <NavbarLink as={Link} href="/checkout">Carrito</NavbarLink>
+
+      <NavbarCollapse className="flex md:order-2 space-x-4">
+        <NavbarLink as={Link} href="/shop" > Shop </NavbarLink>
+        <NavbarLink as={Link} href="/checkout"> Carrito </NavbarLink>
+        <NavbarLink as={Link} href="/user-dashboard"> My Profile </NavbarLink>
       </NavbarCollapse>
     </Navbar>
     )

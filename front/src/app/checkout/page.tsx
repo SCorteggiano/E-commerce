@@ -20,7 +20,7 @@ const Checkout = () => {
             </div>
 
             {!products ? (<h1>No hay productos en el carrito</h1>) :
-            (<h1>Aqui hay que mapear la info de productos de carrito</h1>)}
+            (<h1>Aqui hay que mapear la info de productos de carrito EL COMPONENTE CARRITO</h1>)}
         </div>
     )
 }
