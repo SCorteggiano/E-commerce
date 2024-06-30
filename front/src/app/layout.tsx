@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import { CarritoContext, CarritoProvider } from "@/context/CarritoContext";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
-          <Navbar/>
-          <main className="flex flex-grow justify-center container mx-auto px-4 py-8">{children}</main>
-          <Footer/>
+        <CarritoProvider>
+              <Navbar/> 
+              <main className="flex flex-grow justify-center container mx-auto px-4 py-8">{children}</main>
+              <Footer/>    
+        </CarritoProvider>
         </div>
-        </body>
+        </body>   
     </html>
   );
 }

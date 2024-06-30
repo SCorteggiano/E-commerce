@@ -1,6 +1,7 @@
 import Link from "next/link"; 
 import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const MyNavbar = () => {
     return(
@@ -22,6 +23,7 @@ const MyNavbar = () => {
         <NavbarLink as={Link} href="/shop" > Shop </NavbarLink>
         <NavbarLink as={Link} href="/checkout"> Carrito </NavbarLink>
         <NavbarLink as={Link} href="/user-dashboard"> My Profile </NavbarLink>
+
       </NavbarCollapse>
     </Navbar>
     )

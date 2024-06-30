@@ -18,16 +18,23 @@ const Register = () => {
     const handleChange = (event:React.ChangeEvent<HTMLInputElement>)  => {
         const {name, value} = event.target;
         setRegisterValues({...registerValues, [name]: value});
-
-        //Validacion de inputs CREAR LAS FUNCIONES DE VALIDACIONES DENTRO DE HELPERS
         setErrors(validateRegister({...registerValues,[name]: value}));
     }
 
-    const handleSubmit =  (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit =  async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        //AQUI UNA FUNCION QUE ENVIE LA INFORMACION AL BACKEND DB
-        alert(JSON.stringify(registerValues));
-    }
+
+        //Fetch al Backend
+        const response = await fetch("http://localhost:5000/users/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(registerValues),
+        });
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+    };
 
     return (
         <div>
@@ -37,7 +44,7 @@ const Register = () => {
 
                     <div>
                     <div className="mb-2 block">
-                        <Label value="Name" />
+                        <Label value="Name" htmlFor="name"/>
                         
                     </div>
                     <TextInput 
@@ -45,6 +52,7 @@ const Register = () => {
                         id="name" 
                         name="name"
                         onChange={handleChange}
+                        value={registerValues.name}
                         required
                     />
                     {errors.name && (
@@ -54,14 +62,15 @@ const Register = () => {
 
                     <div>
                     <div className="mb-2 block">
-                        <Label value="Address" />
+                        <Label value="Address" htmlFor="address"/>
                         
                     </div>
                     <TextInput 
                         type="text" 
                         id="address"
                         name="address"
-                        onChange={handleChange} 
+                        onChange={handleChange}
+                        value={registerValues.address} 
                         required 
                     />
                     {errors.address && (
@@ -71,14 +80,15 @@ const Register = () => {
 
                     <div>
                     <div className="mb-2 block">
-                        <Label value="Phone" />
+                        <Label value="Phone" htmlFor="phone"/>
                         
                     </div>
                     <TextInput 
                         type="number" 
                         id="phone"
                         name="phone"
-                        onChange={handleChange} 
+                        onChange={handleChange}
+                        value={registerValues.phone} 
                         required 
                     />
                     {errors.phone && (
@@ -88,14 +98,15 @@ const Register = () => {
 
                     <div>
                     <div className="mb-2 block">
-                        <Label  value="Email" />
+                        <Label  value="Email" htmlFor="email"/>
                         
                     </div>
                     <TextInput 
                         type="email" 
-                        id="email"
-                        name="email"
-                        onChange={handleChange} 
+                        id="mail"
+                        name="mail"
+                        onChange={handleChange}
+                        value={registerValues.mail} 
                         placeholder="example@mail.com" 
                         required 
                     />
@@ -105,14 +116,15 @@ const Register = () => {
                     </div>
                     <div>
                     <div className="mb-2 block">
-                        <Label  value="Password" />
+                        <Label  value="Password" htmlFor="password"/>
                         
                     </div>
                     <TextInput 
                         type="password" 
                         id="password"
                         name="password"
-                        onChange={handleChange} 
+                        onChange={handleChange}
+                        value={registerValues.password} 
                         required 
                     />
                     {errors.password && (

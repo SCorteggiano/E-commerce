@@ -1,5 +1,7 @@
+import Carrito from "@/components/Carrito/Carrito"; 
 
-
+//{!products ? (<h1>No hay productos en el carrito</h1>) :
+//   (<h1>Aqui hay que mapear la info de productos de carrito EL COMPONENTE CARRITO</h1>)}
 
 const Checkout = () => {
 
@@ -9,18 +11,7 @@ const Checkout = () => {
 
     return(
         <div>
-            <div>
-                <span>PRODUCT</span>
-            </div>
-            <div>
-                <span>PRICE</span>
-            </div>
-            <div>
-                <span>REMOVE</span>
-            </div>
-
-            {!products ? (<h1>No hay productos en el carrito</h1>) :
-            (<h1>Aqui hay que mapear la info de productos de carrito EL COMPONENTE CARRITO</h1>)}
+            <Carrito/>            
         </div>
     )
 }

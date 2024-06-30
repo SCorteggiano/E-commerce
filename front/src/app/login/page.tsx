@@ -4,6 +4,7 @@ import { useState } from "react";
 import { validateLogin } from "@/helpers/validation";
 import Link from "next/link";
 
+
 const Login = () => {
 
     const [loginValues, setLoginValues] = useState({
@@ -19,12 +20,20 @@ const Login = () => {
         setErrors(validateLogin({...loginValues,[name]: value}));
     }
 
-    const handleSubmit =  (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit =  async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
-        //AQUI UNA FUNCION QUE ENVIE LA INFORMACION AL BACKEND DB
-        alert(JSON.stringify(loginValues));
-    }
+
+        //Fetch al Backend
+        const response = await fetch("http://localhost:5000/users/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginValues),
+        });
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+    };
 
     return (
         <div>
@@ -33,13 +42,14 @@ const Login = () => {
                     <h1 className="text-black font-bold text-center text-3xl">Login</h1>
                     <div>
                     <div className="mb-2 block">
-                        <Label value="Email" />
+                        <Label value="Email" htmlFor="email"/>
                     </div>
                     <TextInput 
                         type="email" 
                         id="email" 
                         name="email"
                         onChange={handleChange}
+                        value={loginValues.mail}
                         placeholder="example@mail.com" 
                         required 
                     />
@@ -49,13 +59,14 @@ const Login = () => {
                     </div>
                     <div>
                     <div className="mb-2 block">
-                        <Label value="Password" />
+                        <Label value="Password" htmlFor="password"/>
                     </div>
                     <TextInput 
                         type="password" 
                         id="password"
                         name="password"
-                        onChange={handleChange} 
+                        onChange={handleChange}
+                        value={loginValues.password} 
                         required 
                     />
                     {errors.password && (

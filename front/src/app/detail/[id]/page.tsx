@@ -1,12 +1,14 @@
 import { IProduct } from "@/interfaces";
 import { Card } from "flowbite-react";
 import Link from "next/link";
+import AddToCart from "@/components/AddButton/AddButton";
 
 export async function fetchProductById(id: string): Promise<IProduct> {
     const response = await fetch (`http://localhost:5000/products/${id}`) 
     const product = await response.json();
     return product;
 }
+
 
 async function Detail ({params}: {params:{id:string}}) {
 
@@ -34,12 +36,7 @@ async function Detail ({params}: {params:{id:string}}) {
                         {product?.description}
                     </p>
                     <span className="text-3xl font-bold text-gray-900 dark:text-white">${product?.price}</span>
-                    <a
-                    href="#"
-                    className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-                    >
-                    Add to cart
-                    </a>
+                    <AddToCart id= {product.id}></AddToCart>
                 </Card>
 
             </div>

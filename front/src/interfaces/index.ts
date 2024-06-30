@@ -58,8 +58,34 @@ interface IProduct {
 }
 
 interface IProductProps {
+    product: IProduct,
+}
+
+interface IProductListProps {
     products: IProduct[],
 }
+
+interface ICarritoItemProps {
+    product: IProduct,
+    remove?: () => void,
+}
+
+ interface ICartItem extends IProduct {
+    quantity: number;
+}
+
+
+ interface ICarritoContextType {
+    carritoItems: ICartItem[];
+    addToCarrito: (productId: number) => void;
+    removeFromCarrito: (productId: number) => void;
+    total: number;
+}
+
+ interface ICarritoProviderProps {
+    children: React.ReactNode;
+}
+
 
 export type {
     IRegisterUser,
@@ -69,5 +95,10 @@ export type {
     ILoginUserResponse,
     ICreateOrder,
     IProduct,
-    IProductProps
+    IProductProps,
+    IProductListProps,
+    ICarritoItemProps,
+    ICarritoContextType,
+    ICartItem,
+    ICarritoProviderProps   
 }
