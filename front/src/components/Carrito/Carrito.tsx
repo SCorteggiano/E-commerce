@@ -1,18 +1,21 @@
-// Cart.tsx
 "use client"
 import { useContext } from 'react';
-import { CarritoContext } from '@/context/CarritoContext';
+import { CarritoContext} from '@/context/CarritoContext';
+import { UserContext } from '@/context/userContext';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Cart = () => {
+
     const cartContext = useContext(CarritoContext);
+    const userContext = useContext(UserContext);
 
     if (!cartContext) {
         return null;
     }
 
-    const { carritoItems, addToCarrito, removeFromCarrito, total } = cartContext;
+    const { carritoItems, addToCarrito, removeFromCarrito, total, checkoutOK } = cartContext;
+    const {isLogged} = userContext;
 
     return (
         <div>
@@ -25,9 +28,11 @@ const Cart = () => {
             </div>
 
             <div className="p-4 bg-white rounded-lg shadow-lg">
-                <h2 className="text-xl font-bold mb-4 text-black">Carrito</h2>
+                <h2 className="text-xl font-bold mb-4 text-black">CARRITO</h2>
+                {isLogged ? (
+                <>
                 {carritoItems.length === 0 ? (
-                    <p className='text-xl font-bold mb-4 text-black'>Your cart is empty</p>
+                    <p className='text-xl  mb-4 text-black'>Your cart is empty!</p>
                 ) : (
                     <div>
                         {carritoItems.map(item => (
@@ -61,7 +66,22 @@ const Cart = () => {
                         </div>
                     </div>
                 )}
-                <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">Checkout</button>
+                <button 
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md"
+                    onClick={checkoutOK}
+                >
+                    Checkout
+                </button>
+                
+                    </>
+                ) : (
+                    <>
+                        <p className='text-xl  mb-4 text-black'>Need to be Logged!</p>
+                        <Link href={`/login`}>
+                        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">Go Login!</button>
+                        </Link>
+                    </>
+                )}
             </div>
         </div>
     );

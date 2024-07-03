@@ -1,14 +1,22 @@
 "use client";
 import { Button, Card, Label, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { validateLogin } from "@/helpers/validation";
 import Link from "next/link";
+import { UserContext } from "@/context/userContext";
+import { useRouter } from "next/navigation";
+
 
 
 const Login = () => {
 
+    // Importo la funcion "login" del contexto global
+    const {login} = useContext(UserContext);
+    // Almaceno dentro de esta variable el metodo "useRouter"
+    const router = useRouter();
+
     const [loginValues, setLoginValues] = useState({
-        mail: "",
+        email: "",
         password: "",
     });
 
@@ -23,16 +31,14 @@ const Login = () => {
     const handleSubmit =  async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        //Fetch al Backend
-        const response = await fetch("http://localhost:5000/users/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(loginValues),
-        });
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
+        // Utilizo los valores del contexto Local para la funcion "login" del contexto global.
+        // Si el login es exitoso la funcion nos devuelve true. 
+        const succes = await login(loginValues);
+
+        // Utilizo "router" para redirigir al shop
+        if(succes)router.push("/shop")
+        // En caso de que las credenciales esten mal envio un alert
+        if (!succes)alert("Email or Password Incorrect!")    
     };
 
     return (
@@ -49,7 +55,7 @@ const Login = () => {
                         id="email" 
                         name="email"
                         onChange={handleChange}
-                        value={loginValues.mail}
+                        value={loginValues.email}
                         placeholder="example@mail.com" 
                         required 
                     />

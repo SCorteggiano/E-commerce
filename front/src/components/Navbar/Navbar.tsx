@@ -1,9 +1,14 @@
+"use client"
 import Link from "next/link"; 
 import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "@/context/userContext";
 
 const MyNavbar = () => {
+
+  const {isLogged} = useContext(UserContext);
+
     return(
         <Navbar fluid rounded>
       <NavbarBrand as={Link} href="/">
@@ -22,8 +27,10 @@ const MyNavbar = () => {
       <NavbarCollapse className="flex md:order-2 space-x-4">
         <NavbarLink as={Link} href="/shop" > Shop </NavbarLink>
         <NavbarLink as={Link} href="/checkout"> Carrito </NavbarLink>
-        <NavbarLink as={Link} href="/user-dashboard"> My Profile </NavbarLink>
 
+        {isLogged ? ( <NavbarLink as={Link} href="/user-dashboard"> Profile </NavbarLink>):
+                (<NavbarLink as={Link} href="/login"> Login / Register </NavbarLink>) }
+        
       </NavbarCollapse>
     </Navbar>
     )

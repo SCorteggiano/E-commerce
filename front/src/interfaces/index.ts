@@ -33,7 +33,7 @@ interface IUser {
     address: string,
     phone: string,
     password: string,
-    orders?: number[],
+    orders?: IOrderResponse[],
 }
 
 interface ILoginUserResponse{
@@ -46,6 +46,16 @@ interface ICreateOrder {
     userId: number,
     products: number[],
 }
+
+interface IOrderResponse {
+    id: number,
+    status: string,
+    date: string,
+    user: IUser,
+    products: IProduct [],
+}
+
+
 
 interface IProduct {
     id: number,
@@ -80,10 +90,23 @@ interface ICarritoItemProps {
     addToCarrito: (productId: number) => void;
     removeFromCarrito: (productId: number) => void;
     total: number;
+    checkoutOK: () => void;
 }
 
  interface ICarritoProviderProps {
     children: React.ReactNode;
+}
+
+interface IUserContextType {
+    user: Partial <ILoginUserResponse> | null,
+    setUser: React.Dispatch<React.SetStateAction<Partial<ILoginUserResponse> | null>>,
+    isLogged: boolean,
+    setIsLogged: (isLogged: boolean) => void,
+    login: (credentials: ILoginUser) => Promise<boolean>,
+    register: (user: Omit <IUser, "id">) => Promise<boolean>,
+    getOrders: () => void,
+    orders: IOrderResponse [] | [],
+    logout: () => void, 
 }
 
 
@@ -94,11 +117,13 @@ export type {
     IUser,
     ILoginUserResponse,
     ICreateOrder,
+    IOrderResponse,
     IProduct,
     IProductProps,
     IProductListProps,
     ICarritoItemProps,
     ICarritoContextType,
     ICartItem,
-    ICarritoProviderProps   
+    ICarritoProviderProps,
+    IUserContextType   
 }

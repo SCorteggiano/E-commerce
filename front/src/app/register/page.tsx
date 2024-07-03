@@ -1,12 +1,19 @@
 "use client";
 import { Button, Card, Label, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { validateRegister } from "@/helpers/validation";
+import { UserContext } from "@/context/userContext";
+import { useRouter } from "next/navigation";
 
 const Register = () => {
+    
+    // Importo la funcion "register" del contexto global
+    const {register} = useContext(UserContext);
+    // Almaceno dentro de esta variable el metodo "useRouter"
+    const router = useRouter();
 
     const [registerValues, setRegisterValues] = useState({
-        mail: "",
+        email: "",
         password: "",
         name: "",
         phone:"",
@@ -24,16 +31,14 @@ const Register = () => {
     const handleSubmit =  async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        //Fetch al Backend
-        const response = await fetch("http://localhost:5000/users/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(registerValues),
-        });
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
+        // Utilizo los valores del contexto Local para la funcion "register" del contexto global.
+        // Si el registro es exitoso la funcion nos devuelve true. 
+        const succes = await register(registerValues);
+
+        // Utilizo "router" para redirigir al shop
+        if (succes)router.push("/shop")
+        // En caso de que las credenciales esten mal envio un alert
+        if (!succes)alert("Problems with Registration!")
     };
 
     return (
@@ -103,15 +108,15 @@ const Register = () => {
                     </div>
                     <TextInput 
                         type="email" 
-                        id="mail"
-                        name="mail"
+                        id="email"
+                        name="email"
                         onChange={handleChange}
-                        value={registerValues.mail} 
+                        value={registerValues.email} 
                         placeholder="example@mail.com" 
                         required 
                     />
-                    {errors.mail && (
-                            <span className="text-red-500 text-xs mt-1">{errors.mail}</span>
+                    {errors.email && (
+                            <span className="text-red-500 text-xs mt-1">{errors.email}</span>
                         )}
                     </div>
                     <div>
