@@ -27,7 +27,7 @@ const Cart = () => {
                 </Link>          
             </div>
 
-            <div className="p-4 bg-white rounded-lg shadow-lg">
+            <div className="p-4 bg-white rounded-lg shadow-lg ">
                 <h2 className="text-xl font-bold mb-4 text-black">CARRITO</h2>
                 {isLogged ? (
                 <>

@@ -48,7 +48,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Stay connected and healthy with the Apple Watch Series 6: track your workouts, monitor your health, and stay in touch with the people and information you care about most. Experience the future of health and wellness with the Apple Watch Series 6.",
     image:
-      "https://cdn-ipoint.waugi.com.ar/img/cms/landings-fichas/Watch/Watch%20Series%206/RX-S1_Smart_1_GPS.png",
+      "https://www.apple.com/newsroom/images/product/watch/standard/Apple_watch-series-6-aluminum-blue-case_09152020_carousel.jpg.large.jpg",
     categoryId: 4,
     stock: 10,
   },
@@ -58,7 +58,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Immerse yourself in sound with the AirPods Pro: active noise cancellation, transparency mode, and customizable fit make the AirPods Pro the perfect companion for music, calls, and everything in between. Elevate your audio experience with the AirPods Pro.",
     image:
-      "https://i0.wp.com/www.ear-fidelity.com/wp-content/uploads/2022/10/P1054788s-scaled.jpg?fit=2560%2C1707&ssl=1",
+      "https://cdn-ipoint.waugi.com.ar/25136-large_default/apple-airpods-pro-2da-generacion.jpg",
     categoryId: 5,
     stock: 10,
   },
@@ -68,7 +68,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Elevate your home audio experience with the HomePod mini: immersive sound, intelligent assistant, and smart home hub make the HomePod mini the perfect addition to your home. Enjoy a world of music, news, and more with the HomePod mini.",
     image:
-      "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/homepod-mini-og-202110?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1632930650000",
+      "https://http2.mlstatic.com/D_NQ_NP_732394-MLA74781055633_022024-O.webp",
     categoryId: 6,
     stock: 10,
   },

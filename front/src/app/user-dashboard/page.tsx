@@ -2,6 +2,8 @@
 import { UserContext } from "@/context/userContext";
 import { useContext, useEffect } from "react";
 import Link from "next/link";
+import OrdersCard from "@/components/OrdersCard/OrdersCard";
+import UserInfoCard from "@/components/UserInfoCard/UserInfoCard";
 
 const UserDashboard = () => {
 
@@ -23,16 +25,9 @@ const UserDashboard = () => {
                 
             ) : ( 
                 <div>
-                    <h1 className='text-xl font-bold mb-4 text-white'>Welcome {user?.user?.name}!</h1>
                     <div>
-                        <h2 className='text-lg font-bold mb-4 text-white'>My Orders</h2>
-                        {orders.map((order) => {
-                            return(
-                                <div key={order.id}>
-                                    <li>{order.date}</li>
-                                </div>
-                            )
-                        })}
+                        <UserInfoCard /> 
+                        <OrdersCard />
                     </div>
                 </div>
             )}

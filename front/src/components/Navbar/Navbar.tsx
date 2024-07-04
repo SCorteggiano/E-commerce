@@ -1,13 +1,13 @@
 "use client"
 import Link from "next/link"; 
-import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
+import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, Avatar, Dropdown } from "flowbite-react";
 import Image from "next/image";
 import { useContext } from "react";
 import { UserContext } from "@/context/userContext";
 
 const MyNavbar = () => {
 
-  const {isLogged} = useContext(UserContext);
+  const {isLogged, logout} = useContext(UserContext);
 
     return(
         <Navbar fluid rounded>
@@ -25,12 +25,26 @@ const MyNavbar = () => {
       </NavbarBrand>
 
       <NavbarCollapse className="flex md:order-2 space-x-4">
-        <NavbarLink as={Link} href="/shop" > Shop </NavbarLink>
-        <NavbarLink as={Link} href="/checkout"> Carrito </NavbarLink>
+        <NavbarLink as={Link} href="/shop" className="font-bold text-lg"> Shop </NavbarLink>
+        <NavbarLink as={Link} href="/checkout" className="font-bold text-lg"> Carrito </NavbarLink>
 
-        {isLogged ? ( <NavbarLink as={Link} href="/user-dashboard"> Profile </NavbarLink>):
-                (<NavbarLink as={Link} href="/login"> Login / Register </NavbarLink>) }
-        
+        {isLogged ? ( <div className="flex md:order-2">
+                    <Dropdown
+                      arrowIcon={false}
+                      inline
+                      label={
+                        <Avatar alt="User settings" img="https://i.pinimg.com/564x/bd/1c/c7/bd1cc751865c67de695216da045579d5.jpg" rounded />
+                      }
+                    >
+                      <Dropdown.Item as={Link} href="/user-dashboard">My Account</Dropdown.Item>
+                      <Dropdown.Divider />
+                      <Dropdown.Item onClick={logout}>
+                        Sign out
+                      </Dropdown.Item>
+                    </Dropdown>
+                    <Navbar.Toggle />
+                  </div>
+        ): (<Button as={Link} href="/login" className="font-bold text-lg"> Login / Register </Button>) }        
       </NavbarCollapse>
     </Navbar>
     )
