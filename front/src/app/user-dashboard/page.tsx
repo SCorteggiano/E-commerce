@@ -17,9 +17,9 @@ const UserDashboard = () => {
         <div>
             {!isLogged ? (
                 <>
-                    <h1 className='text-xl font-bold mb-4 text-white'>Need to be Logged!</h1>
+                    <h1 className='text-4xl mb-4 text-white'>NEED TO BE LOGGED!</h1>
                     <Link href={`/login`}>
-                        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">Go Login!</button>
+                        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md text-2xl">LOGIN</button>
                     </Link>
                 </>
                 

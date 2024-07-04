@@ -21,12 +21,12 @@ const MyNavbar = () => {
                 priority={true}   
             />
         </div>
-        <span className="self-center whitespace-nowrap text-xl font-semibold text-black">My Store</span>
+        <span className="self-center whitespace-nowrap text-xl font-semibold text-black">MY STORE</span>
       </NavbarBrand>
 
       <NavbarCollapse className="flex md:order-2 space-x-4">
-        <NavbarLink as={Link} href="/shop" className="font-bold text-lg"> Shop </NavbarLink>
-        <NavbarLink as={Link} href="/checkout" className="font-bold text-lg"> Carrito </NavbarLink>
+        <NavbarLink as={Link} href="/shop" className=" text-lg text-black"> SHOP </NavbarLink>
+        <NavbarLink as={Link} href="/checkout" className="text-lg text-black"> CARRITO </NavbarLink>
 
         {isLogged ? ( <div className="flex md:order-2">
                     <Dropdown
@@ -36,15 +36,15 @@ const MyNavbar = () => {
                         <Avatar alt="User settings" img="https://i.pinimg.com/564x/bd/1c/c7/bd1cc751865c67de695216da045579d5.jpg" rounded />
                       }
                     >
-                      <Dropdown.Item as={Link} href="/user-dashboard">My Account</Dropdown.Item>
+                      <Dropdown.Item as={Link} href="/user-dashboard" className="text-black">MY ACCOUNT</Dropdown.Item>
                       <Dropdown.Divider />
-                      <Dropdown.Item onClick={logout}>
-                        Sign out
+                      <Dropdown.Item onClick={logout} className="text-black">
+                        LOG OUT
                       </Dropdown.Item>
                     </Dropdown>
                     <Navbar.Toggle />
                   </div>
-        ): (<Button as={Link} href="/login" className="font-bold text-lg"> Login / Register </Button>) }        
+        ): (<Button as={Link} href="/login" className="text-lg"> LOGIN / REGISTER </Button>) }        
       </NavbarCollapse>
     </Navbar>
     )

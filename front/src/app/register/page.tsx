@@ -45,7 +45,7 @@ const Register = () => {
         <div>
             <Card className="max-w-sm" >
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                    <h1 className="text-black font-bold text-center text-3xl">Register</h1>
+                    <h1 className="text-black font-bold text-center text-3xl">REGISTER</h1>
 
                     <div>
                     <div className="mb-2 block">
@@ -141,7 +141,7 @@ const Register = () => {
                         type="submit"
                         disabled={Object.keys(errors).length > 0}
                     >
-                        Submit
+                        SUBMIT
                     </Button>
                 </form>
             </Card>

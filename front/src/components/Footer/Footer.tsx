@@ -9,16 +9,10 @@ import {
 
 const MyFooter = () => {
     return(
-        <Footer container>
-      <div className="w-full">
+    <footer>
+      <div className="w-full p-8">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
-          <div>
-            <FooterBrand
-              src="/images/Logo.jpg"
-              alt="Logo"
-              name="MyStore"
-            />
-          </div>
+          
           <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
           </div>
         </div>
@@ -32,7 +26,7 @@ const MyFooter = () => {
           </div>
         </div>
       </div>
-    </Footer>
+    </footer>
     )
 }
 

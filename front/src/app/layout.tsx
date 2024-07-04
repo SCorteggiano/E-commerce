@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Anton, Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import { CarritoContext, CarritoProvider } from "@/context/CarritoContext";
+import { CarritoProvider } from "@/context/CarritoContext";
 import { UserProvider } from "@/context/userContext";
 
 
 const inter = Inter({ subsets: ["latin"] });
+export const anton = Anton({
+  subsets: ['latin'],
+  weight: "400"
+})
+ export const roboto = Roboto({
+  subsets: ['latin'],
+  weight: "100",
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,12 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={anton.className}>
         <div className="min-h-screen flex flex-col">
           <UserProvider>
           <CarritoProvider>
                 <Navbar/> 
-                <main className="flex flex-grow justify-center container mx-auto px-4 py-8">{children}</main>
+                <main className="flex flex-grow justify-center container mx-auto px-4 py-8 bg-no-repeat bg-gradient-cover">{children}</main>
                 <Footer/>    
           </CarritoProvider>
           </UserProvider>
@@ -35,3 +43,4 @@ export default function RootLayout({
     </html>
   );
 }
+
