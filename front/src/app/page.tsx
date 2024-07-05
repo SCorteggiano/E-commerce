@@ -20,8 +20,14 @@ export default function LandingPage() {
         <div className="absolute top-10 left-1/2 transform -translate-x-1/2">
           <h1 className="text-white text-4xl md:text-6xl font-bold">WELCOME TO MY STORE</h1>
           <p className={`text-white text-sm md:text-lg pt-10 ${roboto.className}`}>
-          Mi nombre es Stefano Corteggiano, tengo 24 años. Estudie Administracion de empresas en UADE. Este es mi primer E-Commerce. Utilice las 
-          siguientes tegnologias para construirlo, NextJS, TypeScript, ESLint, Tailwind CSS, Flowbite, Framer Motion,
+            Mi nombre es Stefano Corteggiano, tengo 24 años. Estudie Administracion de empresas en UADE y desarrollo Full-Stack con orientacion en Frontend.
+          </p>
+          <p className={`text-white text-sm md:text-lg pt-1 ${roboto.className}`}>
+            Este E-Commerce lo desarrolle utilizando las siguientes tegnologias, NextJS, TypeScript, ESLint, Tailwind CSS, Flowbite y Framer Motion para la parte Frontend
+            y para la parte del Backend utilice Express, PostgreSQL, TypeORM, Corse, Morgan y Dotenv entre otros.
+          </p>
+          <p className={`text-white text-sm md:text-lg pt-1 ${roboto.className}`}>
+            En el Footer podras encontrar mis redes para contactarme.
           </p>
         </div>
         <div className="absolute left-1/2 transform -translate-x-1/2">

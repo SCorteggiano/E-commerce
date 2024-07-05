@@ -24,10 +24,10 @@ export const validateLogin = (loginValues: {
 }) => {
     let errors = {};
     if(!loginValues.email){
-        errors = {...errors, email: "Email is required"};
+        errors = {...errors, email: "Invalid credentials"};
     }
     if(!loginValues.password){
-        errors = {...errors, password: "Password is required"};
+        errors = {...errors, password: "Invalid credentials"};
     }
 
     return errors;

@@ -7,7 +7,7 @@ import UserInfoCard from "@/components/UserInfoCard/UserInfoCard";
 
 const UserDashboard = () => {
 
-    const {isLogged, user, getOrders, orders} = useContext(UserContext);
+    const {isLogged, getOrders} = useContext(UserContext);
 
     useEffect(() =>{
         getOrders();
@@ -16,12 +16,18 @@ const UserDashboard = () => {
     return (
         <div>
             {!isLogged ? (
-                <>
-                    <h1 className='text-4xl mb-4 text-white'>NEED TO BE LOGGED!</h1>
+                <div className="flex flex-col items-center justify-center mt-40">
+                    <div className="mb-8 ">
+                        <h1 className='text-6xl text-white'>NEED </h1>
+                        <h1 className='text-6xl text-white'>TO BE </h1>
+                        <h1 className='text-6xl text-white'>LOGGED!</h1>
+                    </div>
                     <Link href={`/login`}>
-                        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md text-2xl">LOGIN</button>
+                        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md text-2xl">
+                            LOGIN
+                        </button>
                     </Link>
-                </>
+                </div>
                 
             ) : ( 
                 <div>

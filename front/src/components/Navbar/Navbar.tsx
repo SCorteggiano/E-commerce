@@ -4,10 +4,19 @@ import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, Avatar, Dropdo
 import Image from "next/image";
 import { useContext } from "react";
 import { UserContext } from "@/context/userContext";
+import { useRouter } from "next/navigation";
 
 const MyNavbar = () => {
 
+  const router = useRouter();
+
   const {isLogged, logout} = useContext(UserContext);
+
+  function handleLogout () {
+    logout();
+    router.push("/")
+}
+
 
     return(
         <Navbar fluid rounded>
@@ -26,7 +35,7 @@ const MyNavbar = () => {
 
       <NavbarCollapse className="flex md:order-2 space-x-4">
         <NavbarLink as={Link} href="/shop" className=" text-lg text-black"> SHOP </NavbarLink>
-        <NavbarLink as={Link} href="/checkout" className="text-lg text-black"> CARRITO </NavbarLink>
+        <NavbarLink as={Link} href="/checkout" className="text-lg text-black"> CART </NavbarLink>
 
         {isLogged ? ( <div className="flex md:order-2">
                     <Dropdown
@@ -38,7 +47,7 @@ const MyNavbar = () => {
                     >
                       <Dropdown.Item as={Link} href="/user-dashboard" className="text-black">MY ACCOUNT</Dropdown.Item>
                       <Dropdown.Divider />
-                      <Dropdown.Item onClick={logout} className="text-black">
+                      <Dropdown.Item onClick={handleLogout} className="text-black">
                         LOG OUT
                       </Dropdown.Item>
                     </Dropdown>

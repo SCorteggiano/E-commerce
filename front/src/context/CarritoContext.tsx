@@ -2,6 +2,8 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import { ICartItem, ICarritoContextType, IProduct } from "@/interfaces";
 import { fetchProductById } from "@/app/detail/[id]/page";
+import { useRouter } from "next/navigation";
+
 
 // Funcion addItem
 const addItem = async (carritoItems: ICartItem[], productId: number): Promise<ICartItem[]> => {
@@ -51,7 +53,7 @@ const checkout = async (cartItems: IProduct[]) =>{
             body: JSON.stringify({products})
         });
         if (response.ok) {
-            alert("Your purchase has been made successfully!")
+                 
         } else {
             alert("Problems with your Purchase! Try again!")
         }
