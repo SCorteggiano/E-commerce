@@ -4,6 +4,7 @@ import Link from "next/link";
 import AddToCart from "@/components/AddButton/AddButton";
 import { Inter } from "next/font/google";
 
+
 export async function fetchProductById(id: string): Promise<IProduct> {
     const response = await fetch (`http://localhost:5000/products/${id}`) 
     const product = await response.json();
@@ -18,14 +19,16 @@ async function Detail ({params}: {params:{id:string}}) {
 
     return (
         <div>
-        <div className="absolute left-0 m-4 px-4 py-2 text-sm">
-          <Link href={`/shop`}>
-            <div
-              className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4
-              focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"> BACK</div>
-          </Link>          
-        </div>
+
+            <div className="absolute left-0 m-4 px-4 py-2 text-sm">
+            <Link href={`/shop`}>
+                <div
+                className="rounded-lg  px-5 py-2.5 text-center text-sm font-medium text-white bg-blue-500 hover:bg-blue-700"> BACK</div>
+            </Link>          
+            </div>
+
             <div>
+
                 <Card
                     className="max-w-sm"
                     imgAlt= {product?.name || "image"}
@@ -42,6 +45,7 @@ async function Detail ({params}: {params:{id:string}}) {
                 </Card>
 
             </div>
+            
         </div>
     )
 }

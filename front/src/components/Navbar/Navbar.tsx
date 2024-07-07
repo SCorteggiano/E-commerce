@@ -30,12 +30,12 @@ const MyNavbar = () => {
                 priority={true}   
             />
         </div>
-        <span className="self-center whitespace-nowrap text-xl font-semibold text-black">MY STORE</span>
+        <span className="self-center whitespace-nowrap text-xl font-semibold text-gray-900">MY STORE</span>
       </NavbarBrand>
 
       <NavbarCollapse className="flex md:order-2 space-x-4">
-        <NavbarLink as={Link} href="/shop" className=" text-lg text-black"> SHOP </NavbarLink>
-        <NavbarLink as={Link} href="/checkout" className="text-lg text-black"> CART </NavbarLink>
+        <NavbarLink as={Link} href="/shop" className=" text-lg text-gray-900"> SHOP </NavbarLink>
+        <NavbarLink as={Link} href="/checkout" className="text-lg text-gray-900"> CART </NavbarLink>
 
         {isLogged ? ( <div className="flex md:order-2">
                     <Dropdown
@@ -45,15 +45,19 @@ const MyNavbar = () => {
                         <Avatar alt="User settings" img="https://i.pinimg.com/564x/bd/1c/c7/bd1cc751865c67de695216da045579d5.jpg" rounded />
                       }
                     >
-                      <Dropdown.Item as={Link} href="/user-dashboard" className="text-black">MY ACCOUNT</Dropdown.Item>
+                      <Dropdown.Item as={Link} href="/user-dashboard" className="text-gray-900">MY ACCOUNT</Dropdown.Item>
                       <Dropdown.Divider />
-                      <Dropdown.Item onClick={handleLogout} className="text-black">
+                      <Dropdown.Item onClick={handleLogout} className="text-gray-900">
                         LOG OUT
                       </Dropdown.Item>
                     </Dropdown>
                     <Navbar.Toggle />
                   </div>
-        ): (<Button as={Link} href="/login" className="text-lg"> LOGIN / REGISTER </Button>) }        
+        ): (
+          <Link href="/login" >
+          <button className="text-white bg-blue-500 hover:bg-blue-700 py-1 px-3 rounded-lg text-lg"> LOGIN / REGISTER </button>
+          </Link>
+        )}        
       </NavbarCollapse>
     </Navbar>
     )

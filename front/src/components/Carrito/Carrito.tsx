@@ -5,6 +5,7 @@ import { UserContext } from '@/context/userContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { motion } from "framer-motion";
 
 const Cart = () => {
     const cartContext = useContext(CarritoContext);
@@ -25,17 +26,28 @@ const Cart = () => {
     };
 
     return (
-        <div>
+        <>
+                <div className="absolute left-0 m-4 px-4 py-2 text-sm">
+                    <Link href={`/shop`}>
+                        <div
+                            className="rounded-lg  px-5 py-2.5 text-center text-sm font-medium text-white bg-blue-500 hover:bg-blue-700"
+                            > 
+                            BACK
+                        </div>
+                    </Link>
+                </div>
+        
+                <motion.div
+                    initial={{ x: "-1000%", }}
+                    animate={{ x: "0%", }}
+                    transition={{
+                    delay: 0.2,
+                    duration: 0.6,
+                    ease: "easeInOut"
+                    }}
+                >  
                 {isLogged ? (
                     <>
-                    <div className="absolute left-0 m-4 px-4 py-2 text-sm">
-                        <Link href={`/shop`}>
-                            <div
-                                className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4
-                                focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"> BACK
-                            </div>
-                        </Link>
-                    </div>
                         <div className="p-4 bg-white rounded-lg shadow-lg" style={{ minWidth: '680px' }}>
                             <h2 className="text-2xl mb-4 text-black">CART</h2>
                         {carritoItems.length === 0 ? (
@@ -74,7 +86,8 @@ const Cart = () => {
                             </div>
                         )}
                         <button
-                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md"
+                            className="mt-4 bg-blue-500 hover:bg-blue-700 p-2  text-lg text-white rounded-md"
+                            
                             onClick={handleCheckout}
                             disabled={carritoItems.length === 0}
                         >
@@ -90,14 +103,15 @@ const Cart = () => {
                                 <h1 className='text-6xl text-white'>LOGGED!</h1>
                             </div>
                             <Link href={`/login`}>
-                                <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md text-2xl">
+                                <button className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md text-2xl">
                                     LOGIN
                                 </button>
                             </Link>
                         </div>
                 )}
             
-        </div>
+        </motion.div>
+        </>
     );
 };
 

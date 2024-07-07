@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from '@/context/userContext';
 import { Inter } from 'next/font/google';
+import { motion } from "framer-motion";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,19 +14,27 @@ const OrdersCard: React.FC = () => {
     }, [getOrders]);
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md mt-6 ">
-            <h2 className="text-2xl mb-4 text-black">YOUR ORDERS</h2>
+        <motion.div
+        initial={{ x: "1000%", }}
+        animate={{ x: "0%", }}
+        transition={{
+          delay: 0.2,
+          duration: 0.6,
+          ease: "easeInOut"
+        }}
+        className="bg-white p-6 rounded-lg shadow-md mt-6 ">
+            <h2 className="text-2xl mb-4 text-gray-900">YOUR ORDERS</h2>
             {orders.length === 0 ? (
-                <p className={`text-black  font-bold ${inter.className}`}>No orders found.</p>
+                <p className={`text-gray-900  font-bold ${inter.className}`}>No orders found.</p>
             ) : (
                 orders.map(order => (
                     <div key={order.id} className="mb-4">
-                        <p className={`text-black ${inter.className}`}><strong>Date:</strong> {new Date(order.date).toLocaleDateString()}</p>
-                        <p className={`text-black ${inter.className}`}><strong>Products:</strong> {order.products.map(product => product.name).join(', ')}</p>
+                        <p className={`text-gray-900 ${inter.className}`}><strong>Date:</strong> {new Date(order.date).toLocaleDateString()}</p>
+                        <p className={`text-gray-900 ${inter.className}`}><strong>Products:</strong> {order.products.map(product => product.name).join(', ')}</p>
                     </div>
                 ))
             )}
-        </div>
+        </motion.div>
     );
 };
 

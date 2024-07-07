@@ -1,35 +1,48 @@
+"use client"
 import React from "react";
 import { IProduct } from "@/interfaces";
 import { Card } from "flowbite-react";
 import Link from "next/link";
-  
-const Cards= ({product} : {product: IProduct}) => {
+import { motion } from "framer-motion";
+
+const Cards = ({ product }: { product: IProduct }) => {
   return (
-    <Card 
-      className="h-auto w-80 object-cover"
-      imgAlt={product?.name || "image"}
-      imgSrc= {product.image} 
+    <motion.div
+      initial={{ x: "-1000%" }}
+      animate={{ x: "0%" }}
+      transition={{
+        delay: 0.2,
+        duration: 0.6,
+        ease: "easeInOut"
+      }}
+      className="p-2"
     >
-      <a>
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{product.name}</h5>
-      </a>
-      <div className="flex items-center justify-between">
-        <span className="text-3xl font-bold text-gray-900 dark:text-white">${product.price}</span>
-
-        <div>
-          <Link href={`/detail/${product.id}`}>
-            <button
-              className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4
-              focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"> DETAILS</button>
-          </Link>          
+      <Card className="h-auto w-96">
+        <div className="relative w-full h-80 overflow-hidden">
+          <img
+            src={product.image}
+            alt={product?.name || "image"}
+            className="w-full h-full"
+          />
         </div>
-
-      </div>
-    </Card>
+        <a>
+          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{product.name}</h5>
+        </a>
+        <div className="flex items-center justify-between mt-4">
+          <span className="text-3xl font-bold text-gray-900 dark:text-white">${product.price}</span>
+          <div>
+            <Link href={`/detail/${product.id}`}>
+              <button
+                className="text-white bg-blue-500 hover:bg-blue-700 py-2 px-3 rounded-lg text-lg">
+                DETAILS
+              </button>
+            </Link>
+          </div>
+        </div>
+      </Card>
+    </motion.div>
   );
 }
-
-    
 
 export default Cards;
 

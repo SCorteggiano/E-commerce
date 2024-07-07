@@ -33,9 +33,9 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           <UserProvider>
           <CarritoProvider>
-                <Navbar/> 
-                <main className="flex flex-grow justify-center container mx-auto px-4 py-8 bg-no-repeat bg-gradient-cover">{children}</main>
-                <Footer/>    
+            <Navbar/>
+            <main className="flex flex-grow justify-center container mx-auto px-4 py-8">{children}</main>
+            <Footer/>    
           </CarritoProvider>
           </UserProvider>
         </div>

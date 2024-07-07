@@ -9,7 +9,6 @@ async function fetchProducts ():Promise<IProduct[]> {
     return products;
 }
 
-// CREAR PRODUCT LIST Y MODIFICAR PRODUCT CARD
 async function Shop() {
     const products = await fetchProducts();
     

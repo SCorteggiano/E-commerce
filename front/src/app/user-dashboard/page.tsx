@@ -1,17 +1,13 @@
 "use client"
 import { UserContext } from "@/context/userContext";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Link from "next/link";
 import OrdersCard from "@/components/OrdersCard/OrdersCard";
 import UserInfoCard from "@/components/UserInfoCard/UserInfoCard";
 
 const UserDashboard = () => {
 
-    const {isLogged, getOrders} = useContext(UserContext);
-
-    useEffect(() =>{
-        getOrders();
-    },)
+    const {isLogged} = useContext(UserContext);
 
     return (
         <div>

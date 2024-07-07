@@ -2,8 +2,6 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import { ICartItem, ICarritoContextType, IProduct } from "@/interfaces";
 import { fetchProductById } from "@/app/detail/[id]/page";
-import { useRouter } from "next/navigation";
-
 
 // Funcion addItem
 const addItem = async (carritoItems: ICartItem[], productId: number): Promise<ICartItem[]> => {

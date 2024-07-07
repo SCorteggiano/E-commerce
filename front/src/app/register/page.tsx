@@ -1,9 +1,10 @@
 "use client";
-import { Button, Card, Label, TextInput } from "flowbite-react";
+import { Card, Label, TextInput } from "flowbite-react";
 import { useState, useContext } from "react";
 import { validateRegister } from "@/helpers/validation";
 import { UserContext } from "@/context/userContext";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 const Register = () => {
     
@@ -42,8 +43,16 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <Card className="max-w-sm" >
+        <motion.div
+            initial={{ x: "-1000%", }}
+            animate={{ x: "0%", }}
+            transition={{
+            delay: 0.2,
+            duration: 0.6,
+            ease: "easeInOut"
+            }}
+        >  
+            <Card className="max-w-sm w-96" >
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                     <h1 className="text-black font-bold text-center text-3xl">REGISTER</h1>
 
@@ -137,15 +146,16 @@ const Register = () => {
                         )}
                     </div>
 
-                    <Button 
+                    <button
                         type="submit"
+                        className="text-white bg-blue-500 hover:bg-blue-700 py-2 px-3 rounded-lg text-lg"
                         disabled={Object.keys(errors).length > 0}
                     >
                         SUBMIT
-                    </Button>
+                    </button>
                 </form>
             </Card>
-        </div>
+        </motion.div>
     );
 };
 
