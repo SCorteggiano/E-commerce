@@ -4,6 +4,7 @@ import { IProduct } from "@/interfaces";
 import { Card } from "flowbite-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Cards = ({ product }: { product: IProduct }) => {
   return (
@@ -19,10 +20,11 @@ const Cards = ({ product }: { product: IProduct }) => {
     >
       <Card className="h-auto w-96">
         <div className="relative w-full h-80 overflow-hidden">
-          <img
+          <Image
             src={product.image}
             alt={product?.name || "image"}
-            className="w-full h-full"
+            layout="fill"
+            objectFit="cover"
           />
         </div>
         <a>
