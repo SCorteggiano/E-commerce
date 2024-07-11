@@ -4,7 +4,6 @@ import Link from "next/link";
 import AddToCart from "@/components/AddButton/AddButton";
 import { Inter } from "next/font/google";
 
-
 export async function fetchProductById(id: string): Promise<IProduct> {
     const response = await fetch (`http://localhost:5000/products/${id}`) 
     const product = await response.json();

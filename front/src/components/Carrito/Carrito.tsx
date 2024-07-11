@@ -12,10 +12,6 @@ const Cart = () => {
     const userContext = useContext(UserContext);
     const router = useRouter()
 
-    if (!cartContext) {
-        return null;
-    }
-
     const { carritoItems, addToCarrito, removeFromCarrito, total, checkoutOK } = cartContext;
     const { isLogged } = userContext;
 
@@ -62,7 +58,7 @@ const Cart = () => {
                                                 <h3 className="text-lg text-black font-bold">{item.name}</h3>
                                             </div>
                                         </div>
-                                        <div className="flex items-center ml-auto"> {/* Ajuste para mover el contenedor a la derecha */}
+                                        <div className="flex items-center ml-auto">
                                             <p className='text-black font-bold mr-4'>${item.price.toFixed(2)}</p>
                                             <button
                                                 onClick={() => removeFromCarrito(item.id)}

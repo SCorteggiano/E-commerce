@@ -1,4 +1,4 @@
-import { IUser, ILoginUser, IOrderResponse } from "@/interfaces";
+import { IUser, ILoginUser } from "@/interfaces";
 
 export const registerFetch = async (user: Omit<IUser, "id">) => {
     const response = await fetch("http://localhost:5000/users/register", {

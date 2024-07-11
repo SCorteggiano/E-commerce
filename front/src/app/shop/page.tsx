@@ -2,7 +2,6 @@ import React from "react";
 import Cards from "@/components/Card/Card";
 import { IProduct } from "@/interfaces";
 
-//FETCHING
 async function fetchProducts ():Promise<IProduct[]> {
     const response = await fetch ("http://localhost:5000/products")
     const products = await response.json();

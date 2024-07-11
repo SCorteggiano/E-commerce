@@ -10,9 +10,7 @@ import { motion } from "framer-motion";
 
 const Login = () => {
 
-    // Importo la funcion "login" del contexto global
     const {login} = useContext(UserContext);
-    // Almaceno dentro de esta variable el metodo "useRouter"
     const router = useRouter();
 
     const [loginValues, setLoginValues] = useState({
@@ -31,13 +29,8 @@ const Login = () => {
     const handleSubmit =  async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        // Utilizo los valores del contexto Local para la funcion "login" del contexto global.
-        // Si el login es exitoso la funcion nos devuelve true. 
         const succes = await login(loginValues);
-
-        // Utilizo "router" para redirigir al shop
         if(succes)router.push("/shop")
-        // En caso de que las credenciales esten mal envio un alert
         if (!succes)alert("Email or Password Incorrect!")    
     };
 
@@ -67,8 +60,8 @@ const Login = () => {
                         placeholder="example@mail.com" 
                         required 
                     />
-                    {errors.mail && (
-                            <span className="text-red-500 text-xs mt-1">{errors.mail}</span>
+                    {errors.email && (
+                            <span className="text-red-500 text-xs mt-1">{errors.email}</span>
                         )}
                     </div>
                     <div>

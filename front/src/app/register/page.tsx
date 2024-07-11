@@ -8,9 +8,7 @@ import { motion } from "framer-motion";
 
 const Register = () => {
     
-    // Importo la funcion "register" del contexto global
     const {register} = useContext(UserContext);
-    // Almaceno dentro de esta variable el metodo "useRouter"
     const router = useRouter();
 
     const [registerValues, setRegisterValues] = useState({
@@ -32,13 +30,8 @@ const Register = () => {
     const handleSubmit =  async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        // Utilizo los valores del contexto Local para la funcion "register" del contexto global.
-        // Si el registro es exitoso la funcion nos devuelve true. 
         const succes = await register(registerValues);
-
-        // Utilizo "router" para redirigir al shop
         if (succes)router.push("/shop")
-        // En caso de que las credenciales esten mal envio un alert
         if (!succes)alert("Problems with Registration!")
     };
 
@@ -69,9 +62,6 @@ const Register = () => {
                         value={registerValues.name}
                         required
                     />
-                    {errors.name && (
-                            <span className="text-red-500 text-xs mt-1">{errors.name}</span>
-                        )}
                     </div>
 
                     <div>
@@ -87,9 +77,6 @@ const Register = () => {
                         value={registerValues.address} 
                         required 
                     />
-                    {errors.address && (
-                            <span className="text-red-500 text-xs mt-1">{errors.address}</span>
-                        )}
                     </div>
 
                     <div>
@@ -105,9 +92,6 @@ const Register = () => {
                         value={registerValues.phone} 
                         required 
                     />
-                    {errors.phone && (
-                            <span className="text-red-500 text-xs mt-1">{errors.phone}</span>
-                        )}
                     </div>
 
                     <div>
@@ -124,9 +108,6 @@ const Register = () => {
                         placeholder="example@mail.com" 
                         required 
                     />
-                    {errors.email && (
-                            <span className="text-red-500 text-xs mt-1">{errors.email}</span>
-                        )}
                     </div>
                     <div>
                     <div className="mb-2 block">

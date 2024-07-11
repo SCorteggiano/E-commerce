@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '@/context/userContext';
 import { Inter } from 'next/font/google';
 import { motion } from "framer-motion";
