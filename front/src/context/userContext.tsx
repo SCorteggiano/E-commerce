@@ -18,18 +18,26 @@ export const UserContext = createContext<IUserContextType>({
 export const UserProvider = ({children}: {children: React.ReactNode}) => {
     const [user, setUser] = useState<Partial<ILoginUserResponse> | null> (null);
     const [isLogged, setIsLogged] = useState(false);
-    const [orders, setOrders] = useState<IOrderResponse[]>([])
+    const [orders, setOrders] = useState<IOrderResponse[]>([]);
+    const [error, setError] = useState<string | null>(null);
+
 
     const register = async (user: Omit<IUser, "id">) => {
         try {
             const data = await registerFetch(user);
             if(data.id){
-                login({ email: user.email, password: user.password})
-                return true;
+                const loginSuccess = await login({ email: user.email, password: user.password });
+                if (loginSuccess) {
+                    return true;
+                }
+                setError('Failed to log in after registration');
+                return false;
             }
+            setError('Registration failed');
             return false;
         } catch (error) {
             console.error(error);
+            setError('Registration failed');
             return false;
         }
     };
@@ -37,12 +45,19 @@ export const UserProvider = ({children}: {children: React.ReactNode}) => {
     const login = async (credentials: ILoginUser ) => {
         try {
             const data = await loginFetch(credentials);
+            if (data.message) {
+                setError(data.message);
+                return false;
+            }
             setUser(data); 
             localStorage.setItem("user", JSON.stringify(data)); 
             localStorage.setItem("token", data.token);
+            setIsLogged(true);
+            setError(null); 
             return true;
         } catch (error) {
             console.error(error);
+            setError('Invalid credentials');
             return false; 
         }
     };
